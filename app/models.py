@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 File: models.py
-Author: huxuan
-Email: i(at)huxuan.org
+Author: huxuan <i(at)huxuan.org>
 Description: Models for FangMi API.
 """
