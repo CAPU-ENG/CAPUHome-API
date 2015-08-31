@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 File: __init__.py
-Author: huxuan <i@huxuan.org>
+Author: huxuan <i(at)huxuan.org>
 Description: Initial file for app.
 """
 

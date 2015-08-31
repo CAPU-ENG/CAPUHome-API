@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 File: run.py
-Author: huxuan <i@huxuan.org>
+Author: huxuan <i(at)huxuan.org>
 Description: Run script for app.
 """
 import os.path

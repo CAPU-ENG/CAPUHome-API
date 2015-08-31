@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 File: config.sample.py
-Author: huxuan <i@huxuan.org>
+Author: huxuan <i(at)huxuan.org>
 Description: Configuration file for app.
 """
 
