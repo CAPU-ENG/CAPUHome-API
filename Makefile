@@ -12,9 +12,9 @@ permission:
 	chown -R www-data.www-data .
 	chown www-data.www-data /tmp/jieba.cache
 pyflakes:
-	pyflakes app config.py run.py
+	pyflakes app config.sample.py run.py
 pep8:
-	pep8 app config.py run.py
+	pep8 app config.sample.py run.py
 pylint:
-	pylint app config.py run.py
+	pylint app config.sample.py run.py
 lint: pyflakes pep8 pylint
