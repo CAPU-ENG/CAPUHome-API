@@ -7,11 +7,11 @@ Description: Run script for app.
 """
 import os.path
 
-from app import app
-
-if os.path.isfile('config.py'):
+if not os.path.isfile('config.py'):
     raise Exception('Please copy `config.sample.py` to `config.py` with proper'
                     'configuration to make it work.')
+
+from app import app
 
 
 def main():
