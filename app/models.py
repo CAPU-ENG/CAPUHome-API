@@ -3,5 +3,5 @@
 """
 File: models.py
 Author: huxuan <i(at)huxuan.org>
-Description: Models for FangMi API.
+Description: Models for app.
 """
