@@ -9,7 +9,7 @@ import os.path
 
 if not os.path.isfile('config.py'):
     raise Exception('Please copy `config.sample.py` to `config.py` with proper'
-                    'configuration to make it work.')
+                    ' configuration to make it work.')
 
 from app import app
 
