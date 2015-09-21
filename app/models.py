@@ -122,12 +122,7 @@ class Posts(db.Model):
 class Sign(db.Model):
     __tablename__ = 'sign'
 
-    year = db.Column(db.Integer)
-    month = db.Column(db.Integer)
-    day = db.Column(db.Integer)
-    hour = db.Column(db.Integer)
-    minute = db.Column(db.Integer)
-    second = db.Column(db.Integer)
+    time = db.Column(db.DateTime)  # segments about date deleted
     weekday = db.Column(db.Integer)  # was `week`
     uid = db.Column(db.Integer)  # was `username`
 
@@ -160,6 +155,7 @@ class Group(db.Model):
 
     gid = db.Column(db.Integer, primary_key=True)
     group_name = db.Column(db.String(32), unique=True)
+    # To be completed
 
 
 class Group_User(db.Model):
