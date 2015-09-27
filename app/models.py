@@ -138,24 +138,16 @@ class Threads(db.Model):
     created_at = db.Column(db.DateTime)  # was `postdate`
     replied_at = db.Column(db.DateTime)  # was `timestamp`
 
-    bid = db.relationship('Board', backref='bid', lazy='dynamic')
-    author_uid = db.relationship('User', backref='uid', lazy='dynamic')
-    replyer_uid = db.relationship('User', backref='uid', lazy='dynamic')
-
 
 class Group(db.Model):
     __tablename__ = 'group'
 
     gid = db.Column(db.Integer, primary_key=True)
-    group_name = db.Column(db.String(32), unique=True)
-    # To be completed
+    name = db.Column(db.String(32), unique=True)
 
 
-class Group_User(db.Model):
-    __tablename__ = 'group_user'
-
-    gid = db.Column(db.Integer)
-    uid = db.Column(db.Integer)
-
-    gid = db.relationship('Group', backref='gid', lazy='dynamic')
-    uid = db.relationship('User', backref='uid', lazy='dynamic')
+group_user = db.Table(
+    'group_user',
+    db.Column('gid', db.Integer, db.ForeignKey('group.gid')),
+    db.Column('uid', db.Integer, db.ForeignKey('user.uid'))
+)
