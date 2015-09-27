@@ -54,25 +54,19 @@ class User(db.Model):
 
 
 class Board(db.Model):
-    __tablename__ = 'boardinfo'
+    __tablename__ = 'boards'
 
     bid = db.Column(db.Integer, primary_key=True)
-    board_name = db.Column(db.String(32), unique=True)  # was `name`
-    board_title = db.Column(db.String(32), unique=True)  # was `bbstitle`
+    name = db.Column(db.String(32), unique=True)  # was `bbstitle`
     invisible = db.Column(db.Boolean, default=False)  # was `hide`
-    m1 = db.Column(db.Integer)
-    m2 = db.Column(db.Integer)
-    m3 = db.Column(db.Integer)
-    m4 = db.Column(db.Integer)
-    # need temporarily not included
 
 
-class Comments(db.Model):
+class Comment(db.Model):
     __tablename__ = 'comments'
 
     cid = db.Column(db.Integer, primary_key=True)  # was `id`
     pid = db.Column(db.Integer)  # was `fid`
-    author_uid = db.Column(db.Integer)  # was `author`
+    uid = db.Column(db.Integer)  # was `author`
     content = db.Column(db.Text)  # was `text`
     time = db.Column(db.DateTime)
     deleted = db.Column(db.Boolean, default=False)  # was `visible`
@@ -81,7 +75,7 @@ class Comments(db.Model):
     author_uid = db.relationship('User', backref='uid', lazy='dynamic')
 
 
-class Messages(db.Model):
+class Message(db.Model):
     __tablename__ = 'messages'
 
     mid = db.Column(db.Integer, primary_key=True)
@@ -92,11 +86,19 @@ class Messages(db.Model):
     is_read = db.Column(db.Boolean, default=False)
     # ruser, rmsg, rbid, rtid, rpid deleted
 
-    sender_uid = db.relationship('User', backref='uid', lazy='dynamic')
-    receiver_uid = db.relationship('User', backref='uid', lazy='dynamic')
+
+class Notification(db.Model):
+    __tablename__ = 'notifications'
+
+    receiver_uid = db.Column(db.Integer)
+    time = db.Column(db.DateTime)
+    ntype = db.Column(db.Integer)
+    # Type of the notification: reply, at or quote
+    pid = db.Column(db.Integer)
+    cid = db.Column(db.Integer)
 
 
-class Posts(db.Model):
+class Post(db.Model):
     __tablename__ = 'posts'
 
     pid = db.Column(db.Integer, primary_key=True)  # was `fid`
