@@ -71,9 +71,6 @@ class Comment(db.Model):
     time = db.Column(db.DateTime)
     deleted = db.Column(db.Boolean, default=False)  # was `visible`
 
-    pid = db.relationship('Posts', backref='pid', lazy='dynamic')
-    author_uid = db.relationship('User', backref='uid', lazy='dynamic')
-
 
 class Message(db.Model):
     __tablename__ = 'messages'
@@ -116,10 +113,6 @@ class Post(db.Model):
     ip = db.Column(db.String(64))
     # lzl temporarily not included
 
-    bid = db.relationship('Board', backref='bid', lazy='dynamic')
-    tid = db.relationship('Threads', backref='tid', lazy='dynamic')
-    author_uid = db.relationship('User', backref='uid', lazy='dynamic')
-
 
 class Sign(db.Model):
     __tablename__ = 'sign'
@@ -127,8 +120,6 @@ class Sign(db.Model):
     time = db.Column(db.DateTime)  # segments about date deleted
     weekday = db.Column(db.Integer)  # was `week`
     uid = db.Column(db.Integer)  # was `username`
-
-    uid = db.relationship('User', backref='uid', lazy='dynamic')
 
 
 class Threads(db.Model):
