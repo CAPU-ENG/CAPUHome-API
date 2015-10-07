@@ -38,10 +38,10 @@ class User(db.Model):
     last_post_time = db.Column(db.DateTime)  # was `lastpost`
     star = db.Column(db.Integer)
     # score temporarily not included
-    post_num = db.Column(db.Integer, unsigned=True)  # was `post`
-    reply_num = db.Column(db.Integer, unsigned=True)  # was `reply`
-    water_num = db.Column(db.Integer, unsigned=True)  # was `water`
-    sign_num = db.Column(db.Integer, unsigned=True)  # was `sign`
+    num_post = db.Column(db.Integer, unsigned=True)  # was `post`
+    num_reply = db.Column(db.Integer, unsigned=True)  # was `reply`
+    num_water = db.Column(db.Integer, unsigned=True)  # was `water`
+    num_sign = db.Column(db.Integer, unsigned=True)  # was `sign`
     # rights temporarily not included
     # newmsy temporarily not included
     # extr temporarily not included
@@ -75,8 +75,8 @@ class Threads(db.Model):
     title = db.Column(db.String)
     author_uid = db.Column(db.Integer)  # was `author`
     replyer_uid = db.Column(db.Integer)  # was `replyer`
-    clicks = db.Column(db.Integer, default=0)  # was `click`
-    reply_num = db.Column(db.Integer, default=0)  # was `reply`
+    num_click = db.Column(db.Integer, default=0)  # was `click`
+    num_reply = db.Column(db.Integer, default=0)  # was `reply`
     # gesture temporarily not included
     good = db.Column(db.Boolean, default=False)  # was `extr`
     sticky = db.Column(db.Boolean, default=False)  # was `top`
