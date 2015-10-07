@@ -72,7 +72,7 @@ class Threads(db.Model):
 
     tid = db.Column(db.Integer, primary_key=True)
     bid = db.Column(db.Integer)
-    title = db.Column(db.String(32))
+    title = db.Column(db.String)
     author_uid = db.Column(db.Integer)  # was `author`
     replyer_uid = db.Column(db.Integer)  # was `replyer`
     clicks = db.Column(db.Integer, default=0)  # was `click`
