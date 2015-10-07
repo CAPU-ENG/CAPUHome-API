@@ -91,7 +91,7 @@ class Post(db.Model):
     bid = db.Column(db.Integer)
     tid = db.Column(db.Integer)
     title = db.Column(db.String(32))
-    author_uid = db.Column(db.Integer)  # was `author`
+    uid = db.Column(db.Integer)  # was `author`
     content = db.Column(db.Text)  # was `text`
     # ishtml temporarily not included
     # attachs temporarily not included
