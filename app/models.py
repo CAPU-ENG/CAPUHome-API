@@ -52,12 +52,55 @@ class User(db.Model):
     # other2 3 4 5 6 temporarily not included
 
 
+class Group(db.Model):
+    __tablename__ = 'group'
+
+    gid = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32), unique=True)
+
+
 class Board(db.Model):
     __tablename__ = 'boards'
 
     bid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), unique=True)  # was `bbstitle`
     invisible = db.Column(db.Boolean, default=False)  # was `hide`
+
+
+class Threads(db.Model):
+    __tablename__ = 'threads'
+
+    tid = db.Column(db.Integer, primary_key=True)
+    bid = db.Column(db.Integer)
+    title = db.Column(db.String(32))
+    author_uid = db.Column(db.Integer)  # was `author`
+    replyer_uid = db.Column(db.Integer)  # was `replyer`
+    clicks = db.Column(db.Integer, default=0)  # was `click`
+    reply_num = db.Column(db.Integer, default=0)  # was `reply`
+    # gesture temporarily not included
+    good = db.Column(db.Boolean, default=False)  # was `extr`
+    sticky = db.Column(db.Boolean, default=False)  # was `top`
+    created_at = db.Column(db.DateTime)  # was `postdate`
+    replied_at = db.Column(db.DateTime)  # was `timestamp`
+
+
+class Post(db.Model):
+    __tablename__ = 'posts'
+
+    pid = db.Column(db.Integer, primary_key=True)  # was `fid`
+    bid = db.Column(db.Integer)
+    tid = db.Column(db.Integer)
+    title = db.Column(db.String(32))
+    author_uid = db.Column(db.Integer)  # was `author`
+    content = db.Column(db.Text)  # was `text`
+    # ishtml temporarily not included
+    # attachs temporarily not included
+    created_at = db.Column(db.DateTime)  # was `replytime`
+    updated_at = db.Column(db.DateTime)  # was `updatetime`
+    signature = db.Column(db.Text)
+    user_agent = db.Column(db.String(128))  # was `type`
+    ip = db.Column(db.String(64))
+    # lzl temporarily not included
 
 
 class Comment(db.Model):
@@ -93,57 +136,6 @@ class Notification(db.Model):
     # Type of the notification: reply, at or quote
     pid = db.Column(db.Integer)
     cid = db.Column(db.Integer)
-
-
-class Post(db.Model):
-    __tablename__ = 'posts'
-
-    pid = db.Column(db.Integer, primary_key=True)  # was `fid`
-    bid = db.Column(db.Integer)
-    tid = db.Column(db.Integer)
-    title = db.Column(db.String(32))
-    author_uid = db.Column(db.Integer)  # was `author`
-    content = db.Column(db.Text)  # was `text`
-    # ishtml temporarily not included
-    # attachs temporarily not included
-    created_at = db.Column(db.DateTime)  # was `replytime`
-    updated_at = db.Column(db.DateTime)  # was `updatetime`
-    signature = db.Column(db.Text)
-    user_agent = db.Column(db.String(128))  # was `type`
-    ip = db.Column(db.String(64))
-    # lzl temporarily not included
-
-
-class Sign(db.Model):
-    __tablename__ = 'sign'
-
-    time = db.Column(db.DateTime)  # segments about date deleted
-    weekday = db.Column(db.Integer)  # was `week`
-    uid = db.Column(db.Integer)  # was `username`
-
-
-class Threads(db.Model):
-    __tablename__ = 'threads'
-
-    tid = db.Column(db.Integer, primary_key=True)
-    bid = db.Column(db.Integer)
-    title = db.Column(db.String(32))
-    author_uid = db.Column(db.Integer)  # was `author`
-    replyer_uid = db.Column(db.Integer)  # was `replyer`
-    clicks = db.Column(db.Integer, default=0)  # was `click`
-    reply_num = db.Column(db.Integer, default=0)  # was `reply`
-    # gesture temporarily not included
-    good = db.Column(db.Boolean, default=False)  # was `extr`
-    sticky = db.Column(db.Boolean, default=False)  # was `top`
-    created_at = db.Column(db.DateTime)  # was `postdate`
-    replied_at = db.Column(db.DateTime)  # was `timestamp`
-
-
-class Group(db.Model):
-    __tablename__ = 'group'
-
-    gid = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(32), unique=True)
 
 
 group_user = db.Table(
