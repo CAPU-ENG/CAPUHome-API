@@ -9,11 +9,11 @@ from app import db
 
 
 class User(db.Model):
-    __tablename__ = 'userinfo'
+    __tablename__ = 'users'
 
     # new segments
     uid = db.Column(db.Integer, primary_key=True)
-    birthday = db.Column(db.DateTime)
+    birthday = db.Column(db.Date)
     student_id = db.Column(db.String(16))
     name = db.Column(db.String(16))
     tel = db.Column(db.String(16))
@@ -24,7 +24,7 @@ class User(db.Model):
     # token temporarily not included
     # tokentime temporarily not included
     gender = db.Column(db.Boolean, nullable=False)  # was `sex`
-    icon = db.Column(db.Text)
+    avatar = db.Column(db.String(32))
     intro = db.Column(db.Text)
     sig1 = db.Column(db.Text)
     sig2 = db.Column(db.Text)
@@ -33,9 +33,9 @@ class User(db.Model):
     qq = db.Column(db.String(16))
     mail = db.Column(db.String(64))
     province = db.Column(db.String(8))  # was `place`
-    registration_date = db.Column(db.DateTime)  # was `regdate`
-    last_login_date = db.Column(db.DateTime)  # was `lastdate`
-    last_login_ip = db.Column(db.DateTime)  # was `lastip`
+    registration_date = db.Column(db.Date)  # was `regdate`
+    last_login_time = db.Column(db.DateTime)  # was `lastdate`
+    last_post_time = db.Column(db.DateTime)  # was `lastpost`
     star = db.Column(db.Integer)
     # score temporarily not included
     post_num = db.Column(db.Integer, unsigned=True)  # was `post`
@@ -45,7 +45,6 @@ class User(db.Model):
     # rights temporarily not included
     # newmsy temporarily not included
     # extr temporarily not included
-    last_post_time = db.Column(db.DateTime)  # was `lastpost`
     current_board = db.Column(db.Integer)  # was `nowboard`
     user_agent = db.Column(db.String(128))  # was `onlinetype`
     # logininfo temporarily not included
@@ -87,7 +86,8 @@ class Message(db.Model):
 class Notification(db.Model):
     __tablename__ = 'notifications'
 
-    receiver_uid = db.Column(db.Integer)
+    nid = db.Column(db.Integer, primary_key=True)
+    uid = db.Column(db.Integer)
     time = db.Column(db.DateTime)
     ntype = db.Column(db.Integer)
     # Type of the notification: reply, at or quote
