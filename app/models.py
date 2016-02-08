@@ -53,7 +53,7 @@ class User(db.Model):
 
 
 class Group(db.Model):
-    __tablename__ = 'group'
+    __tablename__ = 'groups'
 
     gid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), unique=True)
@@ -140,6 +140,6 @@ class Notification(db.Model):
 
 group_user = db.Table(
     'group_user',
-    db.Column('gid', db.Integer, db.ForeignKey('group.gid')),
-    db.Column('uid', db.Integer, db.ForeignKey('user.uid'))
+    db.Column('group_id', db.Integer, db.ForeignKey('group.gid')),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.uid'))
 )
