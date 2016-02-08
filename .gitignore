@@ -60,3 +60,4 @@ target/
 config.py
 .ropeproject
 */.ropeproject
+.idea
