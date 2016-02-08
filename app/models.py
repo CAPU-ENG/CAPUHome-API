@@ -32,11 +32,12 @@ class User(db.Model):
     hobby = db.Column(db.Text)
     qq = db.Column(db.String(16))
     mail = db.Column(db.String(64))
+    wechat = db.Column(db.String(64))
     province = db.Column(db.String(8))  # was `place`
     registration_date = db.Column(db.Date)  # was `regdate`
     last_login_time = db.Column(db.DateTime)  # was `lastdate`
     last_post_time = db.Column(db.DateTime)  # was `lastpost`
-    star = db.Column(db.Integer)
+    star = db.Column(db.Integer, default=1)
     # score temporarily not included
     num_post = db.Column(db.Integer, unsigned=True)  # was `post`
     num_reply = db.Column(db.Integer, unsigned=True)  # was `reply`
@@ -57,6 +58,9 @@ class Group(db.Model):
 
     gid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), unique=True)
+    leader_uid = db.Column(db.Integer)
+    created_date = db.Column(db.Date)
+    deleted = db.Column(db.Boolean, default=False)
 
 
 class Board(db.Model):
@@ -73,6 +77,7 @@ class Threads(db.Model):
     tid = db.Column(db.Integer, primary_key=True)
     bid = db.Column(db.Integer)
     title = db.Column(db.String)
+    content = db.Column(db.Text)
     author_uid = db.Column(db.Integer)  # was `author`
     replyer_uid = db.Column(db.Integer)  # was `replyer`
     num_click = db.Column(db.Integer, default=0)  # was `click`
@@ -124,6 +129,8 @@ class Message(db.Model):
     time = db.Column(db.DateTime)
     is_read = db.Column(db.Boolean, default=False)
     # ruser, rmsg, rbid, rtid, rpid deleted
+    sender_deleted = db.Column(db.Boolean, default=False)
+    receiver_deleted = db.Column(db.Boolean, default=False)
 
 
 class Notification(db.Model):
@@ -136,6 +143,7 @@ class Notification(db.Model):
     # Type of the notification: reply, at or quote
     pid = db.Column(db.Integer)
     cid = db.Column(db.Integer)
+    is_read = db.Column(db.Boolean, default=False)
 
 
 group_user = db.Table(
