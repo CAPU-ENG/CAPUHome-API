@@ -16,7 +16,6 @@ class User(db.Model):
     student_id = db.Column(db.String(16))
     name = db.Column(db.String(16))
     tel = db.Column(db.String(16))
-
     username = db.Column(db.String(32), unique=True)
     password = db.Column(db.String(32), nullable=False)
     gender = db.Column(db.Boolean, nullable=False)
@@ -50,7 +49,7 @@ class Group(db.Model):
 
     gid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), unique=True)
-    leader_uid = db.Column(db.Integer)
+    uid = db.Column(db.Integer)
     created_date = db.Column(db.Date)
     deleted = db.Column(db.Boolean, default=False)
 
@@ -84,11 +83,10 @@ class Post(db.Model):
     __tablename__ = 'posts'
 
     pid = db.Column(db.Integer, primary_key=True)
-    author_uid = db.Column(db.Integer, db.ForeignKey('users.id'))
+    uid = db.Column(db.Integer, db.ForeignKey('users.id'))
     bid = db.Column(db.Integer)
     tid = db.Column(db.Integer)
     title = db.Column(db.String(32))
-    uid = db.Column(db.Integer)
     content = db.Column(db.Text)
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
