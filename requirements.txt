@@ -1,5 +1,6 @@
 flask
 flask-sqlalchemy
+mysql-python
 pep8
 pyflakes
 pylint
