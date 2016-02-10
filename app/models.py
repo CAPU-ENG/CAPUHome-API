@@ -67,10 +67,10 @@ class Threads(db.Model):
     __tablename__ = 'threads'
 
     tid = db.Column(db.Integer, primary_key=True)
+    author_uid = db.Column(db.Integer, db.ForeignKey('users.id'))
     bid = db.Column(db.Integer)
     title = db.Column(db.String)
     content = db.Column(db.Text)
-    author_uid = db.Column(db.Integer, db.ForeignKey('users.id'))
     replyer_uid = db.Column(db.Integer)
     num_click = db.Column(db.Integer, default=0)
     num_reply = db.Column(db.Integer, default=0)
@@ -84,6 +84,7 @@ class Post(db.Model):
     __tablename__ = 'posts'
 
     pid = db.Column(db.Integer, primary_key=True)
+    author_uid = db.Column(db.Integer, db.ForeignKey('users.id'))
     bid = db.Column(db.Integer)
     tid = db.Column(db.Integer)
     title = db.Column(db.String(32))
@@ -94,7 +95,6 @@ class Post(db.Model):
     signature = db.Column(db.Text)
     user_agent = db.Column(db.String(128))
     ip = db.Column(db.String(64))
-    author_uid = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 
 class Comment(db.Model):
