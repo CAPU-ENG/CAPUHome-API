@@ -90,6 +90,7 @@ class Thread(db.Model):
     sticky = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime)
     replied_at = db.Column(db.DateTime)
+    parse_type = db.Column(db.String(16))
 
 
 class Post(db.Model):
@@ -106,6 +107,7 @@ class Post(db.Model):
     signature = db.Column(db.Text)
     user_agent = db.Column(db.String(128))
     ip = db.Column(db.String(64))
+    parse_type = db.Column(db.String(16))
 
 
 class Comment(db.Model):
