@@ -75,7 +75,7 @@ class Board(db.Model):
     invisible = db.Column(db.Boolean, default=False)
 
 
-class Threads(db.Model):
+class Thread(db.Model):
     __tablename__ = 'threads'
 
     tid = db.Column(db.Integer, primary_key=True)
