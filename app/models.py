@@ -8,6 +8,13 @@ Description: Models for app.
 from app import db
 
 
+group_user = db.Table(
+    'group_user',
+    db.Column('group_id', db.Integer, db.ForeignKey('groups.gid')),
+    db.Column('user_id', db.Integer, db.ForeignKey('users.uid'))
+)
+
+
 class User(db.Model):
     __tablename__ = 'users'
 
@@ -42,6 +49,12 @@ class User(db.Model):
 
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     threads = db.relationship('Thread', backref='author', lazy='dynamic')
+    groups = db.relationship(
+        'Group',
+        backref=db.backref('users', lazy='dynamic'),
+        secondary=group_user,
+        lazy='dynamic'
+    )
 
 
 class Group(db.Model):
@@ -66,9 +79,9 @@ class Threads(db.Model):
     __tablename__ = 'threads'
 
     tid = db.Column(db.Integer, primary_key=True)
-    author_uid = db.Column(db.Integer, db.ForeignKey('users.id'))
+    author_uid = db.Column(db.Integer, db.ForeignKey('users.uid'))
     bid = db.Column(db.Integer)
-    title = db.Column(db.String)
+    title = db.Column(db.String(64))
     content = db.Column(db.Text)
     replyer_uid = db.Column(db.Integer)
     num_click = db.Column(db.Integer, default=0)
@@ -83,7 +96,7 @@ class Post(db.Model):
     __tablename__ = 'posts'
 
     pid = db.Column(db.Integer, primary_key=True)
-    uid = db.Column(db.Integer, db.ForeignKey('users.id'))
+    uid = db.Column(db.Integer, db.ForeignKey('users.uid'))
     bid = db.Column(db.Integer)
     tid = db.Column(db.Integer)
     title = db.Column(db.String(32))
@@ -130,10 +143,3 @@ class Notification(db.Model):
     pid = db.Column(db.Integer)
     cid = db.Column(db.Integer)
     is_read = db.Column(db.Boolean, default=False)
-
-
-group_user = db.Table(
-    'group_user',
-    db.Column('group_id', db.Integer, db.ForeignKey('group.gid')),
-    db.Column('user_id', db.Integer, db.ForeignKey('user.uid'))
-)
