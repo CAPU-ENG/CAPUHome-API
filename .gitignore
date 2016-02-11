@@ -58,3 +58,6 @@ target/
 
 # Custom
 config.py
+.ropeproject
+*/.ropeproject
+.idea
