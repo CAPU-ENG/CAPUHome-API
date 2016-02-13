@@ -82,7 +82,6 @@ class Thread(db.Model):
     author_uid = db.Column(db.Integer, db.ForeignKey('users.uid'))
     bid = db.Column(db.Integer)
     title = db.Column(db.String(64))
-    content = db.Column(db.Text)
     replyer_uid = db.Column(db.Integer)
     num_click = db.Column(db.Integer, default=0)
     num_reply = db.Column(db.Integer, default=0)
@@ -90,7 +89,6 @@ class Thread(db.Model):
     sticky = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime)
     replied_at = db.Column(db.DateTime)
-    parse_type = db.Column(db.String(16))
 
 
 class Post(db.Model):
@@ -107,7 +105,7 @@ class Post(db.Model):
     signature = db.Column(db.Text)
     user_agent = db.Column(db.String(128))
     ip = db.Column(db.String(64))
-    parse_type = db.Column(db.String(16))
+    type = db.Column(db.String(16))
 
 
 class Comment(db.Model):
