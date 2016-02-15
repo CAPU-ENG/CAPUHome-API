@@ -105,7 +105,7 @@ class Post(db.Model):
     signature = db.Column(db.Text)
     user_agent = db.Column(db.String(128))
     ip = db.Column(db.String(64))
-    type = db.Column(db.String(16))
+    parse_type = db.Column(db.String(16))
 
 
 class Comment(db.Model):
