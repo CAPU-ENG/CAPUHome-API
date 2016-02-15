@@ -12,10 +12,9 @@ from flask.ext.sqlalchemy import SQLAlchemy
 app = Flask(__name__)  # pylint: disable=invalid-name
 app.config.from_object('config')
 
-# commented as for file structure, should recover later.
-# from app import models
-
 db = SQLAlchemy(app)
+
+from app import models
 
 
 @app.route('/')
