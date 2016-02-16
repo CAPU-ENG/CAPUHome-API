@@ -75,14 +75,13 @@ class Board(db.Model):
     invisible = db.Column(db.Boolean, default=False)
 
 
-class Threads(db.Model):
+class Thread(db.Model):
     __tablename__ = 'threads'
 
     tid = db.Column(db.Integer, primary_key=True)
     author_uid = db.Column(db.Integer, db.ForeignKey('users.uid'))
     bid = db.Column(db.Integer)
     title = db.Column(db.String(64))
-    content = db.Column(db.Text)
     replyer_uid = db.Column(db.Integer)
     num_click = db.Column(db.Integer, default=0)
     num_reply = db.Column(db.Integer, default=0)
@@ -106,6 +105,7 @@ class Post(db.Model):
     signature = db.Column(db.Text)
     user_agent = db.Column(db.String(128))
     ip = db.Column(db.String(64))
+    parse_type = db.Column(db.String(16))
 
 
 class Comment(db.Model):
