@@ -26,7 +26,7 @@ class User(db.Model):
     username = db.Column(db.String(32), unique=True)
     password = db.Column(db.String(32), nullable=False)
     gender = db.Column(db.Boolean, nullable=False)
-    avatar = db.Column(db.String(32))
+    avatar = db.Column(db.String(128))
     intro = db.Column(db.Text)
     sig1 = db.Column(db.Text)
     sig2 = db.Column(db.Text)
@@ -46,7 +46,7 @@ class User(db.Model):
     num_water = db.Column(db.Integer, default=0)
     num_sign = db.Column(db.Integer, default=0)
     current_board = db.Column(db.Integer)
-    user_agent = db.Column(db.String(128))
+    user_agent = db.Column(db.String(256))
 
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     threads = db.relationship('Thread', backref='author', lazy='dynamic')
