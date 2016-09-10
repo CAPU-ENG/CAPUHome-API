@@ -26,7 +26,7 @@ class User(db.Model):
     username = db.Column(db.String(32), unique=True)
     password = db.Column(db.String(32), nullable=False)
     gender = db.Column(db.Boolean, nullable=False)
-    avatar = db.Column(db.String(128))
+    avatar = db.Column(db.String(32))
     intro = db.Column(db.Text)
     sig1 = db.Column(db.Text)
     sig2 = db.Column(db.Text)
