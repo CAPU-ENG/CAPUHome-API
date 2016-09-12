@@ -46,7 +46,7 @@ class User(db.Model):
     num_water = db.Column(db.Integer, default=0)
     num_sign = db.Column(db.Integer, default=0)
     current_board = db.Column(db.Integer)
-    user_agent = db.Column(db.String(128))
+    user_agent = db.Column(db.String(256))
 
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     threads = db.relationship('Thread', backref='author', lazy='dynamic')
